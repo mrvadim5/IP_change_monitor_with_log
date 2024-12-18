@@ -21,7 +21,7 @@ def log_ip_change(log_file, old_ip, new_ip):
         file.write(log_entry)
         print(log_entry.strip())
 
-def monitor_ip(interval=60):
+def monitor_ip(interval=300):
     """
     Monitor the external IP address for changes and log them.
 
@@ -30,10 +30,15 @@ def monitor_ip(interval=60):
     """
     # Determine the log file location on Desktop
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
+    #desktop_path = "C:\\Users\User\Desktop"
     log_file = os.path.join(desktop_path, "ip_monitor_log.txt")
 
     print(f"Starting public IP monitor. Log file: {log_file}")
     current_ip = get_external_ip()
+    
+    # write file once script starts
+    with open(log_file, "a") as file:
+        file.write("IP Monitor started.\n")
 
     if current_ip:
         print(f"Initial IP address: {current_ip}")
@@ -57,5 +62,5 @@ def monitor_ip(interval=60):
 
 if __name__ == "__main__":
     # Set the interval (in seconds) for checking the IP
-    CHECK_INTERVAL = 60  # Change this value as needed
+    CHECK_INTERVAL = 300  # Change this value as needed
     monitor_ip(CHECK_INTERVAL)
