@@ -28,7 +28,7 @@ def monitor_ip(interval=300):
     Args:
         interval (int): Time in seconds between checks.
     """
-    # Determine the log file location on Desktop
+    # Determine the log file location on Desktop- can use either direct path or let program determine
     desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
     #desktop_path = "C:\\Users\User\Desktop"
     log_file = os.path.join(desktop_path, "ip_monitor_log.txt")
